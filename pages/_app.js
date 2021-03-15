@@ -1,7 +1,9 @@
+import React from 'react';
+import App from 'next/app'
 import Head from 'next/head';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-export default function MyApp(props) {
+function MyApp(props) {
   const { Component, pageProps } = props;
 
   return (
@@ -15,3 +17,12 @@ export default function MyApp(props) {
     </>
   );
 }
+
+MyApp.getInitialProps = async (appContext) => {
+  // calls page's `getInitialProps` and fills `appProps.pageProps`
+  const appProps = await App.getInitialProps(appContext);
+
+  return { ...appProps }
+}
+
+export default MyApp

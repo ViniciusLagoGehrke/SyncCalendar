@@ -4,5 +4,8 @@
   "/_error": "pages/_error.js",
   "/": "pages/index.js",
   "/dashboard": "pages/dashboard.js",
-  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js"
+  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js",
+  "/signUp": "pages/signUp.js",
+  "/admin": "pages/admin.js",
+  "/management": "pages/management.js"
 }
