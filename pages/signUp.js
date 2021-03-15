@@ -1,10 +1,3 @@
-/*
-  Should be able to register with:
-    -userId
-    -password
-    -name
-*/
-
 import Link from 'next/link';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -32,14 +25,14 @@ const useStyles = makeStyles((theme) => ({
   },
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(3),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
 }));
 
-export default function Login() {
+export default function SignUp() {
   const classes = useStyles();
 
   return (
@@ -49,7 +42,7 @@ export default function Login() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Log in
+          Sign up
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
@@ -91,20 +84,20 @@ export default function Login() {
             color="primary"
             className={classes.submit}
           >
-            Log In
+            Sign Up
           </Button>
-          <Grid container>
+          <Grid container justify="flex-end">
             <Grid item>
-              <Link href="/signUp">
-                <LinkMui  variant="body2">
-                  {"Don't have an account? Sign Up"}
+              <Link href="/">
+                <LinkMui variant="body2">
+                  Already have an account? Log in
                 </LinkMui>
               </Link>
             </Grid>
           </Grid>
         </form>
       </div>
-      <Box mt={8}>
+      <Box mt={5}>
         <Copyright />
       </Box>
     </Container>

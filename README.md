@@ -1,21 +1,12 @@
-## Next.js Repl.it Template
+## Available Scripts
 
-[Next.js](https://nextjs.org/) is an easy-to-use React framework that ships with server-side rendering, hot module reloading, and many other features out-of-the-box. 
+In the project directory, you can run:
 
-By default, Repl.it runs the `dev` script, but you can configure it by changing the `run` field in `.replit`.
+### `yarn dev`
 
-To add a new page simply add a .js, .jsx, .ts, or .tsx file in the `pages` directory.
+### `yarn build`
 
-Pages are associated with a route based on their file name. For example pages/about.js is mapped to /about. You can even add dynamic route parameters with the filename.
+### `yarn start`
 
-We've already created `/pages/index.js` for you to get you started. Feel free to change its contents and see it live-update!
-
-```javascript
-function HomePage() {
-  return <div>Welcome to Next.js!</div>
-}
-
-export default HomePage
-```
-
-Refer to the [Next.js docs](https://nextjs.org/docs/getting-started) to learn more.
+## Live Site
+You can check a live demo [here](https://sync-calendar-mdcydwcpr-viniciuslagogehrke.vercel.app/SignUp)

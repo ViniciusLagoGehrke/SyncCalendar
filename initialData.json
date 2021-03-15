@@ -1,0 +1,20 @@
+{
+  "user": {
+    "id": "VGehrke",
+    "name": "Vinicius Gehrke"
+  },
+  "calendars": [
+    {
+      "id": "VGehrke1",
+      "name": "HydraDev",
+      "owner": "Gabriela",
+      "utc": "En-GB"
+    },
+    {
+      "id": "VGehrke2",
+      "name": "HydraDev",
+      "owner": "João Francisco",
+      "utc": "En-GB"
+    }
+  ]
+}

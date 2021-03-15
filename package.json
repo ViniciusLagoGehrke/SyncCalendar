@@ -1,5 +1,5 @@
 {
-  "name": "FortunateTallCodec",
+  "name": "SyncCalendar",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,6 +12,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.2",
     "next": "^9.2.2",
     "react": "^16.13.0",
     "react-dom": "^16.13.0"
