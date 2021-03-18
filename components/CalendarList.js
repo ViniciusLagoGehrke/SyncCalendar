@@ -13,9 +13,9 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-
 function CalendarList({ Calendars }) {
   const classes = useStyles();
+
   const filtered = Calendars.map(calendar =>
     <Grid key={calendar.id} item xs={12} sm={6} md={4}>
       <Paper className={classes.paper}>
@@ -23,6 +23,7 @@ function CalendarList({ Calendars }) {
       </Paper>
     </Grid>
   );
+  
   return (
     <Grid container spacing={2}>
       {filtered}
