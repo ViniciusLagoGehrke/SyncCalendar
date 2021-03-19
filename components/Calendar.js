@@ -16,6 +16,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
+import DeleteIcon from '@material-ui/icons/Delete';
 import Title from './Title';
 import useClock from '../utils/useClock';
 

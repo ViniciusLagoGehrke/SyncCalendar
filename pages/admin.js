@@ -5,8 +5,9 @@
 */
 
 import { useState, useEffect } from 'react';
+import AddUserForm from '../components/AddUserForm';
 import Layout from '../components/Layout';
-import UsersList from "../components/UsersList"
+import EnhancedTable from '../components/Table';
 
 import { data } from '../initialData';
 
@@ -45,8 +46,8 @@ export default function Admin() {
      searchValue={searchUsers}
      searchInput={handleSearchInput}     
     >
-      <div></div>
-      <UsersList Users={filteredusers}/>
+      <AddUserForm />
+      <EnhancedTable users={filteredusers} calendars={data.calendars}/>
     </Layout>
   );
 }

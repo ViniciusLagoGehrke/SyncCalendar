@@ -80,7 +80,7 @@ export default function Login() {
             required
             fullWidth
             id="name"
-            label="name"
+            label="Full Name"
             name="name"
             autoComplete="name"
           />

@@ -42,6 +42,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+
 function SearchBar ({ value, onChange }) {
   const classes = useStyles();
 

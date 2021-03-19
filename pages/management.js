@@ -5,6 +5,48 @@
     -Edit their dashboards
 */
 
+import { useState, useEffect } from 'react';
+import Layout from '../components/Layout';
+import EnhancedTable from '../components/Table';
+
+import { data } from '../initialData';
+
 export default function Management() {
-  return <div>Management</div>;
+  const [searchUsers, setSearchUsers] = useState("");
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    setUsers(data.users)
+  }, []);
+
+  const handleSearchInput = e => {
+    setSearchUsers(e.target.value);
+  };
+
+  const filteredusers = !searchUsers
+  ? users
+  : users.filter(
+    user => {
+      return (
+        user
+        .name
+        .toLowerCase()
+        .includes(searchUsers.toLowerCase()) ||
+        user
+        .role
+        .toLowerCase()
+        .includes(searchUsers.toLowerCase())
+      );
+    }
+  );
+
+  return (
+    <Layout
+     title={data.users[0].name}
+     searchValue={searchUsers}
+     searchInput={handleSearchInput}     
+    >
+      <EnhancedTable users={filteredusers} calendars={data.calendars}/>
+    </Layout>
+  );
 }

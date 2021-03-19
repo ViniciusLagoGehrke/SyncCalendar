@@ -1,4 +1,3 @@
- 
 /*
  
 */
@@ -8,7 +7,7 @@ import Box from '@material-ui/core/Box';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import Copyright from '../components/Copyright';
 import useClock from '../utils/useClock';
@@ -51,7 +50,8 @@ const useStyles = makeStyles((theme) => ({
    height: '100vh',
    overflow: 'auto',
  },
- container: {
+ grid: {
+   display: 'flex',
    paddingTop: theme.spacing(4),
    paddingBottom: theme.spacing(4),
  }
@@ -102,14 +102,12 @@ export default function Layout({
 
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
-        
+        <Grid container maxWidth="lg" spacing={3} >
           { children }
-        
-          <Box pt={4}>
-            <Copyright />
-          </Box>
-        </Container>
+        </Grid>
+        <Box pt={4}>
+          <Copyright />
+        </Box>
       </main>
 
     </div>
