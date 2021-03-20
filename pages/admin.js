@@ -7,7 +7,7 @@
 import { useState, useEffect } from 'react';
 import AddUserForm from '../components/AddUserForm';
 import Layout from '../components/Layout';
-import EnhancedTable from '../components/Table';
+import UsersTable from '../components/UsersTable';
 
 import { data } from '../initialData';
 
@@ -47,7 +47,18 @@ export default function Admin() {
      searchInput={handleSearchInput}     
     >
       <AddUserForm />
-      <EnhancedTable users={filteredusers} calendars={data.calendars}/>
+      <UsersTable users={filteredusers} calendars={data.calendars}/>
     </Layout>
   );
 }
+
+/*
+      <Grid
+        container
+        maxWidth="lg"
+        spacing={3}
+        className={classes.grid}
+      >
+
+      </Grid>
+*/

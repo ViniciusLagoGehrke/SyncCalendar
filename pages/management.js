@@ -7,7 +7,7 @@
 
 import { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
-import EnhancedTable from '../components/Table';
+import UsersTable from '../components/UsersTable';
 
 import { data } from '../initialData';
 
@@ -46,7 +46,7 @@ export default function Management() {
      searchValue={searchUsers}
      searchInput={handleSearchInput}     
     >
-      <EnhancedTable users={filteredusers} calendars={data.calendars}/>
+      <UsersTable users={filteredusers} calendars={data.calendars}/>
     </Layout>
   );
 }

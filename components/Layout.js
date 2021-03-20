@@ -4,6 +4,7 @@
  
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
+import Container from '@material-ui/core/Container';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -50,10 +51,9 @@ const useStyles = makeStyles((theme) => ({
    height: '100vh',
    overflow: 'auto',
  },
- grid: {
+   grid: {
    display: 'flex',
-   paddingTop: theme.spacing(4),
-   paddingBottom: theme.spacing(4),
+   padding: theme.spacing(3),
  }
 }));
  
@@ -102,9 +102,15 @@ export default function Layout({
 
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Grid container maxWidth="lg" spacing={3} >
-          { children }
-        </Grid>
+        <Container maxWidth="lg">
+          <Grid
+            container
+            spacing={3}
+            className={classes.grid}
+          >
+            { children }
+          </Grid >
+        </Container>
         <Box pt={4}>
           <Copyright />
         </Box>

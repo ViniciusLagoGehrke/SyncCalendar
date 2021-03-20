@@ -25,9 +25,9 @@ function CalendarList({ Calendars }) {
   );
   
   return (
-    <Grid container spacing={2}>
+    <>
       {filtered}
-    </Grid>
+    </>
   )
 }
 

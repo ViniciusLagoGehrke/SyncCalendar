@@ -19,6 +19,7 @@
     "next": "latest",
     "prop-types": "^15.7.2",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "swr": "^0.5.4"
   }
 }

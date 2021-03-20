@@ -185,7 +185,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function EnhancedTable({ users, calendars }) {
+export default function UsersTable({ users, calendars }) {
   const classes = useStyles();
   const [order, setOrder] = useState('asc');
   const [orderBy, setOrderBy] = useState('role');
@@ -254,7 +254,7 @@ export default function EnhancedTable({ users, calendars }) {
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
   return (
-    <Grid item>
+    <Grid item sm={8}>
       <Paper className={classes.paper}>
         <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer>
