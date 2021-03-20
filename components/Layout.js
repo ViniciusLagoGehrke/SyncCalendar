@@ -95,7 +95,7 @@ export default function Layout({
             color="inherit"
             noWrap
           >
-            {time.toLocaleTimeString()}
+            {time}
           </Typography>
         </Toolbar>
       </AppBar>

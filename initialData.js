@@ -1,36 +1,36 @@
-const ROLE = {
+export const ROLE = {
   BASIC: 'basic',
   MANAGER: 'manager',
   ADMIN: 'admin'
 }
 
-const users = [
+export const users = [
   { id: "VGehrke", name: 'Vinicius Gehrke', password: "VGehrke", role: ROLE.BASIC },
   { id: "PNogueira", name: 'Pedro Nogueira', password: "PNogueira", role: ROLE.MANAGER },
   { id: "TCardoso", name: 'Tânia Cardoso', password: "TCardoso", role: ROLE.ADMIN }
 ];
 
-const calendars = [
+export const calendars = [
   {
     "id": "VGehrke1",
     "userId": "VGehrke",
     "name": "HydraDev",
     "owner": "Gabriela",
-    "utc": "En-GB"
+    "timeZone": "Europe/London"
   },
   {
     "id": "VGehrke2",
     "userId": "VGehrke",
     "name": "HydraDev",
     "owner": "João Francisco",
-    "utc": "En-GB"
+    "timeZone": "Asia/Taipei"
   },
   {
     "id": "VGehrke3",
     "userId": "VGehrke",
     "name": "Airbnb",
     "owner": "Aurora",
-    "utc": "En-GB"
+    "timeZone": "Australia/Sydney"
   }
 ]
 

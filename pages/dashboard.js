@@ -78,7 +78,7 @@ export default function Dashboard() {
       searchValue={searchCalendars}
       searchInput={handleSearchInput}     
     >
-      <CalendarList Calendars={filteredCalendars} />
+      <CalendarList calendars={filteredCalendars} />
     </Layout>
   );
 }

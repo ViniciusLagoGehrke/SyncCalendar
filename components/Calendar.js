@@ -52,7 +52,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Calendar({ calendar }) {
-  const time = useClock();
+  const calendarTime = useClock(new Date(), calendar.timeZone);
+  const localTime = useClock();
+  const calendarHour = parseInt(calendarTime.split(":")[0]);
+  const localHour = parseInt(localTime.split(":")[0]);
+  const diffHours = calendarHour - localHour;
+
   const classes = useStyles();
   return (
     <>
@@ -82,11 +87,15 @@ export default function Calendar({ calendar }) {
         <Box className={classes.box}>
           <AccessTimeIcon className={classes.clockIcon}/>
           <Typography component="p" variant="body1" noWrap >
-            {time.toLocaleTimeString()}
+            {calendarTime} {" "} {calendar.timeZone}
           </Typography>
         </Box>
         <Typography component="p" variant="body1" noWrap >
-          {'+4 hours'}
+          {diffHours > 1 || diffHours < -1 ? (
+            `${diffHours} hours`
+          ) : (
+            `${diffHours} hour`
+          )}
         </Typography>
       </Box>
     </>
