@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import Link from 'next/link';
 import clsx from 'clsx';
 import { lighten, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -16,6 +17,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
+import LinkMui from '@material-ui/core/Link';
 import Tooltip from '@material-ui/core/Tooltip';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
@@ -300,7 +302,16 @@ export default function UsersTable({ users, calendars }) {
                         {row.name}
                       </TableCell>
                       <TableCell align="left" width="100px">{row.role}</TableCell>
-                      <TableCell align="right" width="100px">{row.calendars}</TableCell>
+                      <TableCell align="right" width="100px">
+                         {row.calendars > 0 ? (
+                          <Link href="/dashboard">
+                            <LinkMui  variant="body2">
+                              {row.calendars}
+                            </LinkMui>
+                          </Link>
+                        ) : row.calendars
+                        }
+                      </TableCell>
                     </TableRow>
                   );
                 })}
