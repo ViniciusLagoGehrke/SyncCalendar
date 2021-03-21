@@ -16,14 +16,14 @@ export const calendars = [
     "userId": "VGehrke",
     "name": "HydraDev",
     "owner": "Gabriela",
-    "timeZone": "Europe/London"
+    "timeZone": "America/Sao_Paulo"
   },
   {
     "id": "VGehrke2",
     "userId": "VGehrke",
     "name": "HydraDev",
     "owner": "João Francisco",
-    "timeZone": "Asia/Taipei"
+    "timeZone": "Atlantic/Cape_Verde"
   },
   {
     "id": "VGehrke3",

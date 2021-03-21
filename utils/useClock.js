@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
-export default function useClock (initialTime = new Date(), timeZone = "Europe/London") {
-  const [time, setTime] = useState(initialTime);
+export default function useClock (timeZone) {
+  const [time, setTime] = useState(new Date());
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -10,5 +10,6 @@ export default function useClock (initialTime = new Date(), timeZone = "Europe/L
     return () => clearInterval(id);
   }, []);
 
-  return time.toLocaleTimeString('en-US',{timeZone});
+  const options = {timeZone: timeZone, timeZoneName: 'short', hour12: false}
+  return time.toLocaleTimeString([], options);
 }
