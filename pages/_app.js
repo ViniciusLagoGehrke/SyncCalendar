@@ -2,10 +2,10 @@ import React from 'react';
 import App from 'next/app'
 import Head from 'next/head';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import { SWRConfig } from 'swr';
+import fetch from '../lib/fetchJson';
 
-function MyApp(props) {
-  const { Component, pageProps } = props;
-
+function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
@@ -19,16 +19,18 @@ function MyApp(props) {
         <meta name="theme-color" content="#ffffff" />
       </Head>
       <CssBaseline />
-      <Component {...pageProps} />
+      <SWRConfig
+        value={{
+          fetcher: fetch,
+          onError: (err) => {
+            console.error(err)
+          },
+        }}
+      >
+        <Component {...pageProps} />
+      </SWRConfig>
     </>
   );
-}
-
-MyApp.getInitialProps = async (appContext) => {
-  // calls page's `getInitialProps` and fills `appProps.pageProps`
-  const appProps = await App.getInitialProps(appContext);
-
-  return { ...appProps }
 }
 
 export default MyApp

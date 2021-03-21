@@ -14,38 +14,23 @@
 */
  
 import { useState, useEffect } from 'react';
+import useUser from '../lib/useUser'
 import Layout from '../components/Layout';
 import CalendarList from '../components/CalendarList';
 
-import { data } from '../initialData';
+import { data } from '../initialData'; // change to API data fetch
  
 export default function Dashboard() {
+  const { user } = useUser({ redirectTo: '/login' })
+
+  //to change loading alternative
+  if (!user || user.isLoggedIn === false) {
+    return <Layout>loading...</Layout>
+  }
+
+  //search handling to be moved to SearchBar component
   const [searchCalendars, setSearchCalendars] = useState("");
   const [calendars, setCalendars] = useState([]);
-
-  //const [loading, setLoading] = useState(false);
-  
-  /*
-  useEffect(() => {
-    setLoading(true);
-    axios
-      .get("API End Point for User's Calendars")
-      .then(res => {
-        setData(res.data);
-        setLoading(false);
-      })
-      .catch(err =>{
-        console.log(err);
-      });
-  }, []);
-  
-  
-  if (loading) {
-    return {
-  
-    }
-  }
-  */
 
   useEffect(() => {
     setCalendars(data.calendars)
