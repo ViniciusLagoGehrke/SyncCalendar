@@ -11,24 +11,9 @@ import LoginForm from '../components/LoginForm'
 import fetchJson from '../lib/fetchJson'
 
 const Login = () => {
-  const { mutateUser } = useUser({
+  const { mutateUser } = useUser({ 
     redirectTo: '/dashboard',
-    redirectIfFound: true,
-  })
-
-  switch (user.role) {
-    case 'admin':
-      { redirectTo: '/admin',
-        redirectIfFound: true }
-      break;
-    case 'manager':
-      { redirectTo: '/manager',
-        redirectIfFound: true }
-      break;
-    case 'basic':
-      { redirectTo: '/dashboard',
-        redirectIfFound: true }
-  }
+    redirectIfFound: true })
 
   const [errorMsg, setErrorMsg] = useState('')
 
