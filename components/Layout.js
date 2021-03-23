@@ -2,8 +2,10 @@
  
 */
  
-import { makeStyles } from '@material-ui/core/styles';
+import { useRouter } from 'next/router'
+import fetchJson from '../lib/fetchJson'
 import useUser from '../lib/useUser'
+import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import AppBar from '@material-ui/core/AppBar';
@@ -66,7 +68,8 @@ export default function Layout({
   searchInput,
   children }) {
     
-  const { mutateUser } = useUser()  
+  const { mutateUser } = useUser();
+  const router = useRouter()
   const time = useClock();
   const classes = useStyles();
 

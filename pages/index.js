@@ -8,10 +8,11 @@ import SignUpForm from '../components/SignUpForm'
 export default function Home() {
   const [isNewUser, setIsNewUser] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
-
-  const { mutateUser } = useUser({ 
-    redirectTo: '/dashboard',
-    redirectIfFound: true })
+  
+  const { mutateUser } = useUser({
+        redirectTo: '/dashboard',
+        redirectIfFound: true
+      })
 
   async function handleLoginSubmit(e) {
     e.preventDefault()

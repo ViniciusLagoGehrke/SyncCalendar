@@ -103,6 +103,7 @@ export default function LoginForm({ errorMessage, onSubmit, onClick}) {
               </Button>
             </Grid>
           </Grid>
+          {errorMessage && <p>{errorMessage}</p>}
         </form>
       </div>
       <Box mt={8}>
