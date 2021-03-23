@@ -3,6 +3,7 @@
   "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
   "/": "pages/index.js",
-  "/manager": "pages/manager.js",
-  "/api/user": "pages/api/user.js"
+  "/admin": "pages/admin.js",
+  "/api/calendars": "pages/api/calendars.js",
+  "/dashboard": "pages/dashboard.js"
 }

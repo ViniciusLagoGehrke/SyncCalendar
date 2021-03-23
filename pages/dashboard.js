@@ -15,7 +15,7 @@ import CalendarList from '../components/CalendarList';
 export default function Dashboard(props) {
   const router = useRouter()
   const { user } = useUser({ redirectTo: '/' })
-  const [loggedUser, setLoggedUser] = useState(user.user);
+  const [loggedUser, setLoggedUser] = useState(props.user.user);
 
   //redirect according to user role
   const role = loggedUser.role
@@ -29,7 +29,7 @@ export default function Dashboard(props) {
   const [calendars, setCalendars] = useState([]);
 
   useEffect(() => {
-    setCalendars(props.initialData)
+    setCalendars(props.initialCalendars)
   }, []);
   
   const handleSearchInput = e => {
@@ -74,6 +74,8 @@ export default function Dashboard(props) {
 
 export const getServerSideProps = async () => {
     const response = await axios.get('https://synccalendar.viniciuslago.repl.co/api/calendars');
-    const initialData = await response.data;
-    return { props: { initialData } }
+    const initialCalendars = await response.data;
+    return { props: { initialCalendars } }
+
+
 }

@@ -5,23 +5,25 @@
 */
 
 import { useState, useEffect } from 'react';
+import axios from 'axios' // to be update to fetchJson
 import useUser from '../lib/useUser'
 import AddUserForm from '../components/AddUserForm';
 import Layout from '../components/Layout';
 import UsersTable from '../components/UsersTable';
 
-import { data } from '../initialData';
-
-export default function Admin() {
+export default function Admin(props) {
   const { user } = useUser({ redirectTo: '/' })
   const [loggedUser, setLoggedUser] = useState(user.user);
   const [searchUsers, setSearchUsers] = useState("");
   const [users, setUsers] = useState([]);
+  const [calendars, setCalendars] = useState([]);
 
   useEffect(() => {
-    setUsers(data.users)
+    setCalendars(props.initialCalendars);
+    setUsers(props.initialUsers);
   }, []);
 
+  //search handling to be moved to SearchBar component
   const handleSearchInput = e => {
     setSearchUsers(e.target.value);
   };
@@ -55,13 +57,12 @@ export default function Admin() {
   );
 }
 
-/*
-      <Grid
-        container
-        maxWidth="lg"
-        spacing={3}
-        className={classes.grid}
-      >
+export const getServerSideProps = async () => {
+    const resCalendars = await axios.get('https://synccalendar.viniciuslago.repl.co/api/calendars');
+    const initialCalendars = await resCalendars.data;
 
-      </Grid>
-*/
+    const resUsers = await axios.get('https://synccalendar.viniciuslago.repl.co/api/user');
+    const initialUsers = await resUsers.data;
+
+    return { props: { initialCalendars, initialUsers } }
+}

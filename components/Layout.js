@@ -100,10 +100,10 @@ export default function Layout({
               { title }
             </Typography>
             <a
-              href="/api/logout"
+              href="/api/auth/logout"
               onClick={async (e) => {
                 e.preventDefault()
-                await mutateUser(fetchJson('/api/logout'))
+                await mutateUser(fetchJson('/api/auth/logout'))
                 router.push('/')
               }}
             >

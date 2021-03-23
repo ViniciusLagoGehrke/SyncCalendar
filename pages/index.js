@@ -23,7 +23,7 @@ export default function Home() {
 
     try {
       await mutateUser(
-        fetchJson('/api/login', {
+        fetchJson('/api/auth/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(body),
