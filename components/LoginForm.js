@@ -1,9 +1,14 @@
-import Link from 'next/link';
+/*
+  Should be able to register with:
+    -userId (ok)
+    -password (ok)
+    -name (ok)
+*/
+
 import PropTypes from 'prop-types'
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import LinkMui from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -33,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function LoginForm({ errorMessage, onSubmit }) {
+export default function LoginForm({ errorMessage, onSubmit, onClick}) {
   const classes = useStyles();
 
   return (
@@ -93,11 +98,9 @@ export default function LoginForm({ errorMessage, onSubmit }) {
           </Button>
           <Grid container>
             <Grid item>
-              <Link href="/signUp">
-                <LinkMui  variant="body2">
+              <Button color="primary" onClick={onClick}>
                   {"Don't have an account? Sign Up"}
-                </LinkMui>
-              </Link>
+              </Button>
             </Grid>
           </Grid>
         </form>

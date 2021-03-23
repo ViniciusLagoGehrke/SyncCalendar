@@ -11,8 +11,15 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import CalendarList from '../components/CalendarList';
  
 export default function Dashboard(props) {
-  const { user } = useUser({ redirectTo: '/login' })
+  const { user } = useUser({ redirectTo: '/' })
   const loggedUser = user.user;
+  const role = loggedUser.role
+  const pageToRedirect = '/dashboard'
+  if ( role === 'admin' || role === 'manager' ) { pageToRedirect = role }
+
+  const { mutateUser } = useUser({ 
+        redirectTo: pageToRedirect,
+        redirectIfFound: true });
 
   //search handling to be moved to SearchBar component
   const [searchCalendars, setSearchCalendars] = useState("");
@@ -42,7 +49,7 @@ export default function Dashboard(props) {
         );
       }
     );
-  
+
   return (
     <>
       { (!user || user.isLoggedIn === false) ? (
@@ -53,15 +60,14 @@ export default function Dashboard(props) {
         <Layout
           title={loggedUser.name}
           searchValue={searchCalendars}
-          searchInput={handleSearchInput}     
-        >
+          searchInput={handleSearchInput}  
+        >         
           <CalendarList calendars={filteredCalendars} />
         </Layout>
       ) }
     </>
   );
 }
-
 
 export const getServerSideProps = async () => {
     const response = await axios.get('https://synccalendar.viniciuslago.repl.co/api/calendars');

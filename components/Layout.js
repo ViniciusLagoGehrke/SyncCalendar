@@ -3,6 +3,7 @@
 */
  
 import { makeStyles } from '@material-ui/core/styles';
+import useUser from '../lib/useUser'
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import AppBar from '@material-ui/core/AppBar';
@@ -10,6 +11,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
+import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import Copyright from '../components/Copyright';
 import useClock from '../utils/useClock';
 import SearchBar from '../components/SearchBar';
@@ -21,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
  },
  grow: {
    flexGrow: 1,
+   flexWrap: "nowrap"
  },
  toolbar: {
    paddingRight: 24, // keep right padding when drawer closed
@@ -63,6 +66,7 @@ export default function Layout({
   searchInput,
   children }) {
     
+  const { mutateUser } = useUser()  
   const time = useClock();
   const classes = useStyles();
 
@@ -74,15 +78,26 @@ export default function Layout({
         className={classes.appBar}
       >
         <Toolbar className={classes.toolbar}>
-          <Typography
-            component="h1"
-            variant="h6"
-            color="inherit"
-            noWrap
-            className={classes.title}
-          >
-            { title }
-          </Typography>
+          <Box className={classes.title}>
+            <Typography
+              component="h1"
+              variant="h6"
+              color="inherit"
+              noWrap
+            >
+              { title }
+            </Typography>
+            <a
+              href="/api/logout"
+              onClick={async (e) => {
+                e.preventDefault()
+                await mutateUser(fetchJson('/api/logout'))
+                router.push('/login')
+              }}
+            >
+              <ExitToAppRoundedIcon />
+            </a>
+          </Box>
           <SearchBar
             value={searchValue}
             onChange={searchInput}
