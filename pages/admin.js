@@ -5,6 +5,7 @@
 */
 
 import { useState, useEffect } from 'react';
+import useUser from '../lib/useUser'
 import AddUserForm from '../components/AddUserForm';
 import Layout from '../components/Layout';
 import UsersTable from '../components/UsersTable';
@@ -12,6 +13,8 @@ import UsersTable from '../components/UsersTable';
 import { data } from '../initialData';
 
 export default function Admin() {
+  const { user } = useUser({ redirectTo: '/' })
+  const [loggedUser, setLoggedUser] = useState(user.user);
   const [searchUsers, setSearchUsers] = useState("");
   const [users, setUsers] = useState([]);
 
@@ -42,7 +45,7 @@ export default function Admin() {
 
   return (
     <Layout
-     title={data.users[0].name}
+     title={loggedUser.name}
      searchValue={searchUsers}
      searchInput={handleSearchInput}     
     >

@@ -3,11 +3,6 @@
   "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
   "/": "pages/index.js",
-  "/dashboard": "pages/dashboard.js",
-  "/api/calendars": "pages/api/calendars.js",
-  "/api/user": "pages/api/user.js",
   "/manager": "pages/manager.js",
-  "/api/logout": "pages/api/logout.js",
-  "/api/login": "pages/api/login.js",
-  "/api/users/[id]": "pages/api/users/[id].js"
+  "/api/user": "pages/api/user.js"
 }

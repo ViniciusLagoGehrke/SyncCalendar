@@ -6,12 +6,15 @@
 */
 
 import { useState, useEffect } from 'react';
+import useUser from '../lib/useUser'
 import Layout from '../components/Layout';
 import UsersTable from '../components/UsersTable';
 
 import { data } from '../initialData';
 
 export default function Management() {
+  const { user } = useUser({ redirectTo: '/' })
+  const [loggedUser, setLoggedUser] = useState(user.user);
   const [searchUsers, setSearchUsers] = useState("");
   const [users, setUsers] = useState([]);
 
@@ -42,7 +45,7 @@ export default function Management() {
 
   return (
     <Layout
-     title={data.users[0].name}
+     title={loggedUser.name}
      searchValue={searchUsers}
      searchInput={handleSearchInput}     
     >

@@ -15,9 +15,9 @@ import CalendarList from '../components/CalendarList';
 export default function Dashboard(props) {
   const router = useRouter()
   const { user } = useUser({ redirectTo: '/' })
+  const [loggedUser, setLoggedUser] = useState(user.user);
 
   //redirect according to user role
-  const [loggedUser, setLoggedUser] = useState(user.user);
   const role = loggedUser.role
   let pageToRedirect = '/dashboard';
   if ( role === 'admin' || role === 'manager' ) { pageToRedirect = role }
