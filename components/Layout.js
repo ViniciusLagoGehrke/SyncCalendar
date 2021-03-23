@@ -1,7 +1,3 @@
-/*
- 
-*/
- 
 import { useRouter } from 'next/router'
 import fetchJson from '../lib/fetchJson'
 import useUser from '../lib/useUser'
@@ -29,6 +25,11 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
+    [theme.breakpoints.down('sm')]: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: 'center'
+    }
   },
   toolbarIcon: {
     display: 'flex',
@@ -49,8 +50,11 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     alignItems: 'center'
   },
-    title: {
+  title: {
       marginRight: theme.spacing(2)
+  },
+  logout: {
+      color: theme.palette.primary.contrastText,
   },
   clockIcon:{
     marginRight: theme.spacing(1)
@@ -103,14 +107,13 @@ export default function Layout({
                 router.push('/')
               }}
             >
-              <ExitToAppRoundedIcon />
+              <ExitToAppRoundedIcon className={classes.logout} />
             </a>
           </Box>
           <SearchBar
             value={searchValue}
             onChange={searchInput}
           />
-          <div className={classes.grow} />
           <AccessTimeIcon className={classes.clockIcon}/>
           <Typography
             component="h3"
