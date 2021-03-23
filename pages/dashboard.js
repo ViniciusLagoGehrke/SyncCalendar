@@ -4,6 +4,7 @@
 */
  
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router'
 import axios from 'axios' // to be update to fetchJson
 import fetchJson from '../lib/fetchJson'
 import useUser from '../lib/useUser'
@@ -12,9 +13,16 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import CalendarList from '../components/CalendarList';
  
 export default function Dashboard(props) {
+  const router = useRouter()
   const { user } = useUser({ redirectTo: '/' })
+
+  //redirect according to user role
   const [loggedUser, setLoggedUser] = useState(user.user);
   const role = loggedUser.role
+  let pageToRedirect = '/dashboard';
+  if ( role === 'admin' || role === 'manager' ) { pageToRedirect = role }
+  console.log(pageToRedirect)
+  router.push(pageToRedirect)
 
   //search handling to be moved to SearchBar component
   const [searchCalendars, setSearchCalendars] = useState("");
@@ -27,17 +35,6 @@ export default function Dashboard(props) {
   const handleSearchInput = e => {
     setSearchCalendars(e.target.value);
   };
-
-  /*
-      const { user } = useUser()
-      const role = user.user.role
-      const [pageToRedirect, setPageToRedirect] = useState('/dashboard')
-      if ( role === 'admin' || role === 'manager' ) { setPageToRedirect(role) }
-      await mutateUser({
-        redirectTo: pageToRedirect,
-        redirectIfFound: true
-      })
-  */
   
   const filteredCalendars = !searchCalendars
     ? calendars
