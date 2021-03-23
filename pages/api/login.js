@@ -3,7 +3,7 @@ import withSession from '../../lib/session'
 
 export default withSession(async (req, res) => {
   const { username } = await req.body
-  const url = `http://localhost:3000/api/users/${username}`
+  const url = `http://localhost:3000/api/users/${username}` // ok, returns data
 
   try {
     // we check that the user exists and store some data in session

@@ -1,18 +1,27 @@
 /*
-  Main Dashboard render according to user role
-  ## To do Mobile Header !!!
+ Should contain:
+   +User Name (done)
+   +A Calendar filter by name and id (done)
+   +Local time (done)
+   +List of Calendars with:
+     -their name (done)
+     -owner (done)
+     -their current time (down to seconds) (done)
+     -diff from local time (down to seconds) (done)
+     
+   +CRUD Calendars !!!
+ 
+ ## To do Mobile Header !!!
 */
  
 import { useState, useEffect } from 'react';
 import axios from 'axios'
-import useUser from '../lib/useUser'
 import Layout from '../components/Layout';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import CalendarList from '../components/CalendarList';
  
-export default function Dashboard(props) {
-  const { user } = useUser({ redirectTo: '/login' })
-  const loggedUser = user.user;
+export default function UserCalendar(props) {
+  const loggedUser = props.user;
 
   //search handling to be moved to SearchBar component
   const [searchCalendars, setSearchCalendars] = useState("");
@@ -46,7 +55,7 @@ export default function Dashboard(props) {
   return (
     <>
       { (!user || user.isLoggedIn === false) ? (
-        <Layout>   
+        <Layout>
           <CircularProgress />
         </Layout>   
       ) : (

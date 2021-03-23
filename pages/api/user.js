@@ -1,5 +1,5 @@
 import withSession from '../../lib/session'
-import { users } from '../../initialData.js'
+//import { users } from '../../initialData.js'
 
 export default withSession(async (req, res) => {
   const user = req.session.get('user')
@@ -7,9 +7,12 @@ export default withSession(async (req, res) => {
   if (user) {
     // in a real world application you might read the user id from the session and then do a database request
     // to get more information on the user if needed
+
+    //const user = users.filter(user => user.id === user.id);
+
     res.json({
       isLoggedIn: true,
-      ...user,
+      user,
     })
   } else {
     res.json({
