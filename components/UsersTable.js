@@ -24,8 +24,6 @@ import Switch from '@material-ui/core/Switch';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 
-import { data } from '../initialData';
-
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
@@ -187,7 +185,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function UsersTable({ users, calendars }) {
+export default function UsersTable({ users, updateUsers, calendars }) {
   const classes = useStyles();
   const [order, setOrder] = useState('asc');
   const [orderBy, setOrderBy] = useState('role');
@@ -217,6 +215,8 @@ export default function UsersTable({ users, calendars }) {
     }
     setSelected([]);
   };
+
+  
 
   const handleClick = (event, name) => {
     const selectedIndex = selected.indexOf(name);

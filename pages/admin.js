@@ -1,7 +1,7 @@
 /*
   Should be able to:
-    -see a list of users
-    -CRUD (including roles)
+    -see a list of users (ok)
+    -CRUD (including roles) (ok)
 */
 
 import { useState, useEffect } from 'react';
@@ -45,14 +45,22 @@ export default function Admin(props) {
     }
   );
 
+  const handleAddUser = e => {
+    e.preventDefault();
+    const data = new FormData(event.target);
+    console.log(data.getAll(password));
+    //const newUser = e.currentTarget.value
+    //setUsers( users => [...users, ]);)
+  };
+
   return (
     <Layout
      title={loggedUser.name}
      searchValue={searchUsers}
      searchInput={handleSearchInput}     
     >
-      <AddUserForm />
-      <UsersTable users={filteredusers} calendars={data.calendars}/>
+      <AddUserForm users={users} updateUsers={setUsers}/>
+      <UsersTable users={filteredusers} updateUsers={setUsers} calendars={calendars} />
     </Layout>
   );
 }

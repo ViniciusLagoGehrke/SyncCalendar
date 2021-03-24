@@ -116,4 +116,5 @@ export default function LoginForm({ errorMessage, onSubmit, onClick}) {
 LoginForm.propTypes = {
   errorMessage: PropTypes.string,
   onSubmit: PropTypes.func,
+  onClick: PropTypes.func
 }

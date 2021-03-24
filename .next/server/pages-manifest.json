@@ -5,5 +5,5 @@
   "/": "pages/index.js",
   "/admin": "pages/admin.js",
   "/api/calendars": "pages/api/calendars.js",
-  "/dashboard": "pages/dashboard.js"
+  "/api/user": "pages/api/user.js"
 }

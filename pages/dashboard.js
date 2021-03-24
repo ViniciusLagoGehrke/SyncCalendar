@@ -1,8 +1,3 @@
-/*
-  Main Dashboard render according to user role
-  ## To do Mobile Header !!!
-*/
- 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router'
 import axios from 'axios' // to be update to fetchJson
@@ -15,7 +10,7 @@ import CalendarList from '../components/CalendarList';
 export default function Dashboard(props) {
   const router = useRouter()
   const { user } = useUser({ redirectTo: '/' })
-  const [loggedUser, setLoggedUser] = useState(props.user.user);
+  const [loggedUser, setLoggedUser] = useState(user.user);
 
   //redirect according to user role
   const role = loggedUser.role
@@ -55,7 +50,7 @@ export default function Dashboard(props) {
 
   return (
     <>
-      { (!user || user.isLoggedIn === false) ? (
+      { (!user || role !== "basic" || user.isLoggedIn === false) ? (
         <Layout>   
           <CircularProgress />
         </Layout>   
@@ -76,6 +71,4 @@ export const getServerSideProps = async () => {
     const response = await axios.get('https://synccalendar.viniciuslago.repl.co/api/calendars');
     const initialCalendars = await response.data;
     return { props: { initialCalendars } }
-
-
 }
