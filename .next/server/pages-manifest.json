@@ -2,8 +2,7 @@
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
-  "/": "pages/index.js",
   "/admin": "pages/admin.js",
-  "/api/calendars": "pages/api/calendars.js",
-  "/api/user": "pages/api/user.js"
+  "/": "pages/index.js",
+  "/api/auth/user": "pages/api/auth/user.js"
 }
