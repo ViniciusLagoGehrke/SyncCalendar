@@ -18,7 +18,9 @@ export default function Home() {
     e.preventDefault()
 
     const body = {
-      username: e.currentTarget.username.value,
+      usernameForm: e.currentTarget.username.value,
+      passwordForm: e.currentTarget.password.value,
+      nameForm: e.currentTarget.name.value
     }
 
     try {
@@ -35,11 +37,35 @@ export default function Home() {
     }
   }
 
+  async function handleSignupSubmit(e) {
+    e.preventDefault()
+
+    const body = {
+      usernameForm: e.currentTarget.username.value,
+      passwordForm: e.currentTarget.password.value,
+      nameForm: e.currentTarget.name.value
+    }
+
+    try {
+      await fetchJson('/api/user', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+      })
+      setIsNewUser(false);
+    } catch (error) {
+      console.error('An unexpected error happened:', error)
+      setErrorMsg(error.data.message)
+    }
+  }
+
 
   return (
     <>
       { (isNewUser) ? (
         <SignUpForm
+          errorMessage={errorMsg}
+          onSubmit={handleSignupSubmit}
           onClick={() => setIsNewUser(false)}
         />
       ) : (

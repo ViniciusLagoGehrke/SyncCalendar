@@ -73,7 +73,7 @@ export default function UserCalendar(props) {
 
 
 export const getServerSideProps = async () => {
-    const response = await axios.get('https://synccalendar.viniciuslago.repl.co/api/calendars');
+    const response = await axios.get('https://sync-calendar.vercel.app/api/calendars');
     const initialData = await response.data;
     return { props: { initialData } }
 }

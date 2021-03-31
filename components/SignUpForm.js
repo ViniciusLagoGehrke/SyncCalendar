@@ -1,3 +1,11 @@
+/*
+  Should be able to SignUp with:
+    -userId (ok)
+    -password (ok)
+    -name (ok)
+*/
+
+import PropTypes from 'prop-types'
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -30,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUpForm({ onClick }) {
+export default function SignUpForm({ errorMessage, onSubmit, onClick}) {
   const classes = useStyles();
 
   return (
@@ -42,7 +50,11 @@ export default function SignUpForm({ onClick }) {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate>
+        <form
+          className={classes.form}
+          onSubmit={onSubmit}          
+          noValidate
+        >
           <TextField
             variant="outlined"
             margin="normal"
@@ -91,6 +103,7 @@ export default function SignUpForm({ onClick }) {
               </Button>
             </Grid>
           </Grid>
+          {errorMessage && <p>{errorMessage}</p>}
         </form>
       </div>
       <Box mt={5}>
@@ -98,4 +111,10 @@ export default function SignUpForm({ onClick }) {
       </Box>
     </Container>
   );
+}
+
+SignUpForm.propTypes = {
+  errorMessage: PropTypes.string,
+  onSubmit: PropTypes.func,
+  onClick: PropTypes.func
 }

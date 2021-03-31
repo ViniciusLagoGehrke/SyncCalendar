@@ -5,7 +5,7 @@
   "description": "WorkBook",
   "main": "index.js",
   "scripts": {
-    "dev": "next",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start"
   },
@@ -17,6 +17,7 @@
     "@material-ui/icons": "latest",
     "axios": "^0.21.1",
     "clsx": "^1.1.1",
+    "mongodb": "^3.6.5",
     "next": "latest",
     "next-iron-session": "^4.1.12",
     "prop-types": "^15.7.2",
