@@ -1,28 +1,24 @@
-import { users } from '../../../initialData.js'
+import { connectToDatabase } from '../../../utils/mongodb'
 
-export default function userHandler(req, res) {
+export default async function userHandler(req, res) {
   const {
-    query: { id },
+    body: { usernameForm, passwordForm, nameForm },
     method,
   } = req
 
-  const user = users.find(user => user.id === id);
+  const { db } = await connectToDatabase();
 
   switch (method) {
     case 'GET':
-      // Get data from database
-      res.status(200).json( user )
+      const data = await db.collection("users").find({"id": usernameForm});
+      res.status(200).json( data )
       break
     case 'PUT':
-      // Update or create data in database
-      res.status(200).json({ id, name: name || `User ${id}` })
-      break
-    case 'DELETE':
-      // Delete data in database
-      res.status(200).json({ id, name: name || `User ${id} deleted` })
+      // Update data in database
+      res.status(200).json({ id, name: name || `User ${id} updated.` })
       break
     default:
-      res.setHeader('Allow', ['GET'])
+      res.setHeader('Allow', ['GET','PUT'])
       res.status(405).end(`Method ${method} Not Allowed`)
   }
 }

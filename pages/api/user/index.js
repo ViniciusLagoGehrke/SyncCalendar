@@ -1,15 +1,28 @@
-import { users } from '../../../initialData.js'
+import { connectToDatabase } from '../../../utils/mongodb'
 
-export default function userHandler(req, res) {
+export default async function usersHandler(req, res) {
   const {
-    query,
+    body: { usernameForm, passwordForm, nameForm },
     method,
   } = req
 
+  const { db } = await connectToDatabase();
+
   switch (method) {
     case 'GET':
-      // Get data from database
-      res.status(200).json( users )
+      // Get all users from database
+      const data = await db.collection("users").find({}).toArray();
+      res.status(200).json( data )
+      break
+    case 'POST':
+      // Create user in database
+      const response = await db.collection("users").insertOne({
+        "id": usernameForm,
+        "name": nameForm,
+        "password": passwordForm,
+        "role": "basic"
+      });
+      res.status(200).json(response.ops[0])
       break
     case 'PUT':
       // Update or create data in database
@@ -20,7 +33,7 @@ export default function userHandler(req, res) {
       res.status(200).json({ id, name: name || `User ${id} deleted` })
       break
     default:
-      res.setHeader('Allow', ['GET'])
+      res.setHeader('Allow', ['GET', 'POST'])
       res.status(405).end(`Method ${method} Not Allowed`)
   }
 }

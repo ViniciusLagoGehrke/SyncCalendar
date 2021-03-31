@@ -1,6 +1,9 @@
-import { calendars } from '../../initialData.js'
+import { connectToDatabase } from '../../utils/mongodb'
 
-export default function calendarHandler(req, res) {
-  // Get data from database
-  res.status(200).json(calendars)
+export default async function calendarsHandler(req, res) {
+  const { db } = await connectToDatabase();
+
+  const data = await db.collection("calendars").find({}).toArray();
+
+  res.json(data)
 }

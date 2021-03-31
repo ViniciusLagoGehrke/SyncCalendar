@@ -57,10 +57,10 @@ export default function Manager(props) {
 }
 
 export const getServerSideProps = async () => {
-    const resCalendars = await axios.get('https://synccalendar.viniciuslago.repl.co/api/calendars');
+    const resCalendars = await axios.get('https://sync-calendar.vercel.app/api/calendars');
     const initialCalendars = await resCalendars.data;
 
-    const resUsers = await axios.get('https://synccalendar.viniciuslago.repl.co/api/user');
+    const resUsers = await axios.get('https://sync-calendar.vercel.app/api/user');
     const initialUsers = await resUsers.data;
 
     return { props: { initialCalendars, initialUsers } }
