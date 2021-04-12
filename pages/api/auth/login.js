@@ -2,7 +2,7 @@ import fetchJson from '../../../lib/fetchJson'
 import withSession from '../../../lib/session'
 
 export default withSession(async (req, res) => {
-  const { usernameForm, passwordForm, nameForm } = await req.body
+  const { usernameForm, passwordForm, nameForm } = req.body;
   const url = `https://sync-calendar.vercel.app/api/user/${usernameForm}` // ok, returns data
 
   try {

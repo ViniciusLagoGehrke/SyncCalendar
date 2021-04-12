@@ -15,6 +15,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import Alert from '@material-ui/lab/Alert';
 
 import Copyright from '../components/Copyright';
 
@@ -103,7 +104,7 @@ export default function LoginForm({ errorMessage, onSubmit, onClick}) {
               </Button>
             </Grid>
           </Grid>
-          {errorMessage && <p>{errorMessage}</p>}
+          {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
         </form>
       </div>
       <Box mt={8}>
