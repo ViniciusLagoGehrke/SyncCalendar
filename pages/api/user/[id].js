@@ -2,15 +2,15 @@ import { connectToDatabase } from '../../../utils/mongodb'
 
 export default async function userHandler(req, res) {
   const {
-    body: { usernameForm, passwordForm, nameForm },
     method,
+    query: { id }
   } = req
 
   const { db } = await connectToDatabase();
 
   switch (method) {
     case 'GET':
-      const data = await db.collection("users").find({"id": usernameForm});
+      const data = await db.collection("users").findOne({ "id": id });
       res.status(200).json( data )
       break
     case 'PUT':

@@ -15,6 +15,7 @@
   "dependencies": {
     "@material-ui/core": "latest",
     "@material-ui/icons": "latest",
+    "@material-ui/lab": "^4.0.0-alpha.57",
     "axios": "^0.21.1",
     "clsx": "^1.1.1",
     "mongodb": "^3.6.5",
