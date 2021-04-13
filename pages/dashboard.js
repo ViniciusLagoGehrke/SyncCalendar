@@ -16,7 +16,6 @@ export default function Dashboard(props) {
   const role = loggedUser.role
   let pageToRedirect = '/dashboard';
   if ( role === 'admin' || role === 'manager' ) { pageToRedirect = role }
-  console.log(pageToRedirect)
   router.push(pageToRedirect)
 
   //search handling to be moved to SearchBar component
@@ -67,8 +66,8 @@ export default function Dashboard(props) {
   );
 }
 
-export const getServerSideProps = async () => {
-    const response = await axios.get('https://sync-calendar.vercel.app/api/calendars');
-    const initialCalendars = await response.data;
-    return { props: { initialCalendars } }
+export async function getServerSideProps(context) {
+  const response = await axios.get(`https://sync-calendar.vercel.app/api/${loggedUser.id}/calendars`);
+  const initialCalendars = await response.data;
+  return { props: { initialCalendars } }
 }

@@ -5,6 +5,11 @@
     -name (ok)
 */
 
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router'
+import useUser from '../lib/useUser'
+import fetchJson from '../lib/fetchJson'
+
 import PropTypes from 'prop-types'
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -39,8 +44,33 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUpForm({ errorMessage, onSubmit, onClick}) {
+export default function SignUpForm({ onClick }) {
   const classes = useStyles();
+  const [signupErrorMsg, setSignupErrorMsg] = useState('');
+
+  async function handleSignupSubmit(e) {
+    e.preventDefault()
+
+    const body = {
+      usernameForm: e.currentTarget.username.value,
+      passwordForm: e.currentTarget.password.value,
+      nameForm: e.currentTarget.name.value
+    }
+
+    try {
+      await fetchJson('/api/user', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+      })
+
+      setIsNewUser(false);
+      
+    } catch (error) {
+      console.error('An unexpected error happened:', error)
+      setSignupErrorMsg(error.data.message)
+    }
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -53,7 +83,7 @@ export default function SignUpForm({ errorMessage, onSubmit, onClick}) {
         </Typography>
         <form
           className={classes.form}
-          onSubmit={onSubmit}          
+          onSubmit={handleSignupSubmit}          
           noValidate
         >
           <TextField
@@ -104,7 +134,7 @@ export default function SignUpForm({ errorMessage, onSubmit, onClick}) {
               </Button>
             </Grid>
           </Grid>
-          {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
+          {signupErrorMsg && <Alert severity="error">{signupErrorMsg}</Alert>}
         </form>
       </div>
       <Box mt={5}>
@@ -115,7 +145,5 @@ export default function SignUpForm({ errorMessage, onSubmit, onClick}) {
 }
 
 SignUpForm.propTypes = {
-  errorMessage: PropTypes.string,
-  onSubmit: PropTypes.func,
   onClick: PropTypes.func
 }
