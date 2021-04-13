@@ -71,17 +71,19 @@ export default function LoginForm({ handleNewUser }) {
           body: JSON.stringify(body),
         })
       ).then((data) => {
-        //redirect to user page
-        console.log(data.user.id)
-        const userId = data.user.id;
-        let pageToRedirect = `/${userId}`;
+        //redirect according to user role
+        const role = data.user.role
+        let pageToRedirect = `/${data.user.id}`;
+        if ( role === 'admin' || role === 'manager' ){
+          pageToRedirect = `/${role}`;
+        }
         router.push(pageToRedirect)
       })
       setLoading(false);
     } catch (error) {
       setLoading(false);
       console.error('An unexpected error happened:', error)
-      setErrorMsg(error.data)
+      setErrorMsg(error.data.message)
     }
   }
 

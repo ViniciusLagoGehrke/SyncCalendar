@@ -10,7 +10,7 @@ import CalendarList from '../components/CalendarList';
 export default function Dashboard(props) {
   const router = useRouter()
   const { user } = useUser({ redirectTo: '/' })
-  const [loggedUser, setLoggedUser] = useState(user.user);
+  const [loggedUser, setLoggedUser] = useState(user?.user);
 
   //redirect according to user role
   const role = loggedUser.role
@@ -67,7 +67,7 @@ export default function Dashboard(props) {
 }
 
 export async function getServerSideProps(context) {
-  const response = await axios.get(`https://sync-calendar.vercel.app/api/${loggedUser.id}/calendars`);
+  const response = await axios.get(`https://sync-calendar.vercel.app/api/user/VGehrke/calendars`);
   const initialCalendars = await response.data;
   return { props: { initialCalendars } }
 }

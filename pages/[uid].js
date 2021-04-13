@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router'
 import axios from 'axios' // to be update to fetchJson
 import fetchJson from '../lib/fetchJson'
 import useUser from '../lib/useUser'
@@ -8,8 +7,6 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import CalendarList from '../components/CalendarList';
  
 export default function UserPage(props) {
-  const router = useRouter();
-  const { uid } = router.query;
   const { user } = useUser();
   const [loggedUser, setLoggedUser] = useState(user?.user);
 
@@ -53,7 +50,7 @@ export default function UserPage(props) {
           title={loggedUser.name}
           searchValue={searchCalendars}
           searchInput={handleSearchInput}  
-        >         
+        >
           <CalendarList calendars={filteredCalendars} />
         </Layout>
       ) }
@@ -62,8 +59,8 @@ export default function UserPage(props) {
 }
 
 export async function getServerSideProps(context) {
-  const { userId } = context.params;
-  const response = await axios.get(`https://sync-calendar.vercel.app/api/calendars`);
+  const { uid } = context.params;
+  const response = await axios.get(`https://sync-calendar.vercel.app/api/user/${uid}/calendars`);
   const initialCalendars = await response.data;
   return { props: { initialCalendars } }
 }

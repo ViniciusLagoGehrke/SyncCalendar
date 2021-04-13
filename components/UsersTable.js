@@ -305,7 +305,7 @@ export default function UsersTable({ users, updateUsers, calendars }) {
                       <TableCell align="left" width="100px">{row.role}</TableCell>
                       <TableCell align="right" width="100px">
                          {row.calendars > 0 ? (
-                          <Link href={userId}>
+                          <Link href={row.userId}>
                             <LinkMui  variant="body2">
                               {row.calendars}
                             </LinkMui>

@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
-import fetchJson from '../lib/fetchJson'
-import useUser from '../lib/useUser'
+import Link from 'next/link'
+
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
@@ -10,9 +10,13 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
-import Copyright from '../components/Copyright';
-import useClock from '../utils/useClock';
+import LinkMui from '@material-ui/core/Link';
+
 import SearchBar from '../components/SearchBar';
+import Copyright from '../components/Copyright';
+import fetchJson from '../lib/fetchJson'
+import useUser from '../lib/useUser'
+import useClock from '../utils/useClock';
  
  
 const useStyles = makeStyles((theme) => ({
@@ -77,10 +81,17 @@ export default function Layout({
   searchInput,
   children }) {
     
-  const { mutateUser } = useUser({ redirectIfFound: true });
+  const { user, mutateUser } = useUser({ redirectIfFound: true });
   const router = useRouter()
   const time = useClock();
   const classes = useStyles();
+
+  //Homepage according to user role
+  const role = user?.role;
+  let homepage = `/${user.id}`;
+  if ( role === 'admin' || role === 'manager' ){
+    homepage = `/${role}`;
+  }
 
   return (
     <div className={classes.root}>
@@ -91,14 +102,15 @@ export default function Layout({
       >
         <Toolbar className={classes.toolbar}>
           <Box className={classes.titleWrap}>
-            <Typography className={classes.title}
-              component="h1"
-              variant="h6"
-              color="inherit"
-              noWrap
-            >
-              { title }
-            </Typography>
+            <Link href={homepage}>
+              <LinkMui
+                className={classes.title}
+                color="inherit"
+                variant="h6"
+              >
+                { title }
+              </LinkMui>
+            </Link>
             <a
               href="/api/auth/logout"
               onClick={async (e) => {
