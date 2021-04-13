@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function LoginForm({ onClick }) {
+export default function LoginForm({ handleNewUser }) {
   const classes = useStyles();
   const [loading, setLoading] = useState(false);
   const [username, setUsername] = useState('');
@@ -57,13 +57,12 @@ export default function LoginForm({ onClick }) {
 
   async function handleLoginSubmit(e) {
     e.preventDefault()
-
+    setLoading(true);
     const body = {
       usernameForm: username,
       passwordForm: password,
       nameForm: fullname
     }
-    setLoading(true);
     try {
       await mutateUser(
         fetchJson('/api/auth/login', {
@@ -80,9 +79,9 @@ export default function LoginForm({ onClick }) {
       })
       setLoading(false);
     } catch (error) {
+      setLoading(false);
       console.error('An unexpected error happened:', error)
       setErrorMsg(error.data)
-      setLoading(false);
     }
   }
 
@@ -149,7 +148,7 @@ export default function LoginForm({ onClick }) {
           </Button>
           <Grid container>
             <Grid item>
-              <Button color="primary" onClick={onClick}>
+              <Button color="primary" onClick={handleNewUser}>
                   {"Don't have an account? Sign Up"}
               </Button>
             </Grid>

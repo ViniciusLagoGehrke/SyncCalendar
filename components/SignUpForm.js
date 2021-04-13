@@ -44,19 +44,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUpForm({ onClick }) {
+export default function SignUpForm({ handleNewUser }) {
   const classes = useStyles();
+  const [loading, setLoading] = useState(false);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [fullname, setFullname] = useState('');
   const [signupErrorMsg, setSignupErrorMsg] = useState('');
 
   async function handleSignupSubmit(e) {
     e.preventDefault()
-
+    setLoading(true);
     const body = {
-      usernameForm: e.currentTarget.username.value,
-      passwordForm: e.currentTarget.password.value,
-      nameForm: e.currentTarget.name.value
+      usernameForm: username,
+      passwordForm: password,
+      nameForm: fullname
     }
-
     try {
       await fetchJson('/api/user', {
           method: 'POST',
@@ -64,11 +67,12 @@ export default function SignUpForm({ onClick }) {
           body: JSON.stringify(body),
       })
 
-      setIsNewUser(false);
-      
+      handleNewUser();
+      setLoading(false);      
     } catch (error) {
+      setLoading(false);
       console.error('An unexpected error happened:', error)
-      setSignupErrorMsg(error.data.message)
+      setSignupErrorMsg(error.data)
     }
   }
 
@@ -95,6 +99,8 @@ export default function SignUpForm({ onClick }) {
             label="User Name"
             name="username"
             autoComplete="username"
+            onChange={event => setUsername(event.target.value)}
+            value={username}
             autoFocus
           />
           <TextField
@@ -107,6 +113,8 @@ export default function SignUpForm({ onClick }) {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={event => setPassword(event.target.value)}
+            value={password}
           />
           <TextField
             variant="outlined"
@@ -117,6 +125,8 @@ export default function SignUpForm({ onClick }) {
             label="name"
             name="name"
             autoComplete="name"
+            onChange={event => setFullname(event.target.value)}
+            value={fullname}
           />
           <Button
             type="submit"
@@ -129,7 +139,7 @@ export default function SignUpForm({ onClick }) {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Button color="primary" onClick={onClick}>
+              <Button color="primary" onClick={handleNewUser}>
                   Already have an account? Log in
               </Button>
             </Grid>

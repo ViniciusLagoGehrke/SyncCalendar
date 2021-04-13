@@ -10,12 +10,12 @@ export default function Home() {
     <>
       { (isNewUser) ? (
         <SignUpForm
-          onClick={() => setIsNewUser(false)}
+          handleNewUser={() => setIsNewUser(false)}
         />
       ) : (
         <LoginForm
           isLogin
-          onClick={() => setIsNewUser(true)}
+          handleNewUser={() => setIsNewUser(true)}
         />
       )}
     </>
