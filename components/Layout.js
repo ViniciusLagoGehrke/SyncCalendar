@@ -77,7 +77,7 @@ export default function Layout({
   searchInput,
   children }) {
     
-  const { mutateUser } = useUser();
+  const { mutateUser } = useUser({ redirectIfFound: true });
   const router = useRouter()
   const time = useClock();
   const classes = useStyles();
