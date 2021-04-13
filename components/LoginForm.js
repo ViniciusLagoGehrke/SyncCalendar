@@ -5,7 +5,12 @@
     -name (ok)
 */
 
-import PropTypes from 'prop-types'
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router'
+import useUser from '../lib/useUser'
+import fetchJson from '../lib/fetchJson'
+
+import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -39,8 +44,43 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function LoginForm({ errorMessage, onSubmit, onClick}) {
+export default function LoginForm({ onClick }) {
   const classes = useStyles();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [fullname, setFullname] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
+  const { user, mutateUser } = useUser();
+  const router = useRouter();
+
+  async function handleLoginSubmit(e) {
+    e.preventDefault()
+
+    const body = {
+      usernameForm: username,
+      passwordForm: password,
+      nameForm: fullname
+    }
+
+    try {
+      await mutateUser(
+        fetchJson('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        })
+      ).then((data) => {
+        //redirect to user page
+        console.log(data.user.id)
+        const userId = data.user.id;
+        let pageToRedirect = `/${userId}`;
+        router.push(pageToRedirect)
+      })
+    } catch (error) {
+      console.error('An unexpected error happened:', error)
+      setErrorMsg(error.data.message)
+    }
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -54,7 +94,7 @@ export default function LoginForm({ errorMessage, onSubmit, onClick}) {
         <form
           className={classes.form}
           noValidate
-          onSubmit={onSubmit}
+          onSubmit={handleLoginSubmit}
         >
           <TextField
             variant="outlined"
@@ -65,6 +105,8 @@ export default function LoginForm({ errorMessage, onSubmit, onClick}) {
             label="User Name"
             name="username"
             autoComplete="username"
+            onChange={event => setUsername(event.target.value)}
+            value={username}
             autoFocus
           />
           <TextField
@@ -77,6 +119,8 @@ export default function LoginForm({ errorMessage, onSubmit, onClick}) {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={event => setPassword(event.target.value)}
+            value={password}
           />
           <TextField
             variant="outlined"
@@ -87,6 +131,8 @@ export default function LoginForm({ errorMessage, onSubmit, onClick}) {
             label="Full Name"
             name="name"
             autoComplete="name"
+            onChange={event => setFullname(event.target.value)}
+            value={fullname}
           />
           <Button
             type="submit"
@@ -104,7 +150,7 @@ export default function LoginForm({ errorMessage, onSubmit, onClick}) {
               </Button>
             </Grid>
           </Grid>
-          {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
+          {errorMsg && <Alert severity="error">{errorMsg}</Alert>}
         </form>
       </div>
       <Box mt={8}>
@@ -115,7 +161,5 @@ export default function LoginForm({ errorMessage, onSubmit, onClick}) {
 }
 
 LoginForm.propTypes = {
-  errorMessage: PropTypes.string,
-  onSubmit: PropTypes.func,
   onClick: PropTypes.func
 }

@@ -194,11 +194,12 @@ export default function UsersTable({ users, updateUsers, calendars }) {
   const [dense, setDense] = useState(false);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
+  // filter Calendars for each user
   const hasCalendars = (user) => calendars.filter(calendar => calendar.userId === user.id).length;
 
   const rows = users.map(user => {
     const userCalendars = hasCalendars(user)
-    return ({name: user.name, role: user.role, calendars: userCalendars})
+    return ({userId: user.id, name: user.name, role: user.role, calendars: userCalendars})
   });
 
   const handleRequestSort = (event, property) => {
@@ -304,7 +305,7 @@ export default function UsersTable({ users, updateUsers, calendars }) {
                       <TableCell align="left" width="100px">{row.role}</TableCell>
                       <TableCell align="right" width="100px">
                          {row.calendars > 0 ? (
-                          <Link href="/dashboard">
+                          <Link href={userId}>
                             <LinkMui  variant="body2">
                               {row.calendars}
                             </LinkMui>
