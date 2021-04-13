@@ -4,5 +4,8 @@
   "/_error": "pages/_error.js",
   "/": "pages/index.js",
   "/api/user": "pages/api/user.js",
+  "/api/auth/login": "pages/api/auth/login.js",
+  "/[uid]": "pages/[uid].js",
+  "/api/auth/logout": "pages/api/auth/logout.js",
   "/api/auth/user": "pages/api/auth/user.js"
 }

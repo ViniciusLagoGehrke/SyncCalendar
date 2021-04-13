@@ -19,6 +19,11 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/index.js"
     ],
+    "/[uid]": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/[uid].js"
+    ],
     "/_app": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",

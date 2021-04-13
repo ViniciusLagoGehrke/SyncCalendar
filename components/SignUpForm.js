@@ -20,6 +20,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Alert from '@material-ui/lab/Alert';
 
 import Copyright from './Copyright';
@@ -144,6 +145,7 @@ export default function SignUpForm({ handleNewUser }) {
               </Button>
             </Grid>
           </Grid>
+          {loading && <CircularProgress />}
           {signupErrorMsg && <Alert severity="error">{signupErrorMsg}</Alert>}
         </form>
       </div>
