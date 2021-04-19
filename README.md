@@ -2,6 +2,12 @@
 
 A web app that allows a user to see all their collaborators' calendars with their names, task list and associated time zone.
 
+## Screenshots
+
+[Calendars dashboard](calendars.jpg)
+
+[Users dashboard](users.jpg)
+
 ## Features
 
 - Signup and Login with cookie-based Authentication.
