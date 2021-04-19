@@ -4,7 +4,7 @@ A web app that allows a user to see all their collaborators' calendars with thei
 
 ## Screenshots
 
-![Calendars dashboard](calendars.jpg)
+![Desktop Preview](desktop-preview.jpg)
 
 ![Users dashboard](users.jpg)
 
