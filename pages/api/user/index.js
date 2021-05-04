@@ -2,7 +2,7 @@ import { connectToDatabase } from '../../../utils/mongodb'
 
 export default async function usersHandler(req, res) {
   const {
-    body: { usernameForm, passwordForm, nameForm },
+    body: { usernameForm, passwordForm, nameForm, roleForm },
     method,
   } = req
 
@@ -20,7 +20,7 @@ export default async function usersHandler(req, res) {
         "id": usernameForm,
         "name": nameForm,
         "password": passwordForm,
-        "role": "basic"
+        "role": roleForm
       });
       res.status(200).json(response.ops[0])
       break

@@ -20,6 +20,7 @@ const roles = ['basic','manager','admin'];
 
 export default function AddUserForm({ users, updateUsers }) {
   const classes = useStyles();
+  const [loading, setLoading] = useState(false);
   const [newUserRole, setNewUserRole] = useState('basic');
 
   const handleChange = (event) => {
@@ -33,13 +34,34 @@ export default function AddUserForm({ users, updateUsers }) {
   const { value:name, bind:bindName, reset:resetName } = useInput('');
   const { value:role, bind:bindRole, reset:resetRole } = useInput('');
   
-  const handleSubmit = (event) => {
-      event.preventDefault();
-      alert(`Submitting Name ${username} ${password} ${name} ${role}`);
-      resetUsername();
-      resetPassword();
-      resetName();
-      resetRole();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+    
+    const body = {
+      usernameForm: username,
+      passwordForm: password,
+      nameForm: name,
+      roleForm: role
+    }
+    
+    try {
+      await fetchJson('/api/user', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      }).then(() => {
+        alert(`Submitting Name ${username} ${password} ${name} ${role}`);
+        resetUsername();
+        resetPassword();
+        resetName();
+        resetRole();        
+      })
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      console.error('An unexpected error happened:', error)
+    }
   }
 
   return (

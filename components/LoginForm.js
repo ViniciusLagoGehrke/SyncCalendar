@@ -51,7 +51,6 @@ export default function LoginForm({ handleNewUser }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [fullname, setFullname] = useState('');
-  const [errorMsg, setErrorMsg] = useState('');
   const { user, mutateUser } = useUser();
   const router = useRouter();
 
@@ -83,7 +82,6 @@ export default function LoginForm({ handleNewUser }) {
     } catch (error) {
       setLoading(false);
       console.error('An unexpected error happened:', error)
-      setErrorMsg(error.data.message)
     }
   }
 
