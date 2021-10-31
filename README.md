@@ -4,8 +4,8 @@
   <a href="https://github.com/ViniciusLagoGehrke">
       <img src="https://img.shields.io/badge/author-Vinicius-blue?style=flat" alt="author">
   </a>
-  <img src="https://img.shields.io/github/languages/count/ViniciusLagoGehrke/H.app.y-Web?color=blue&style=flat">
-  <img src="https://img.shields.io/github/languages/top/ViniciusLagoGehrke/H.app.y-Web?color=blue&style=flat">
+  <img src="https://img.shields.io/github/languages/count/ViniciusLagoGehrke/SyncCalendar?color=blue&style=flat">
+  <img src="https://img.shields.io/github/languages/top/ViniciusLagoGehrke/SyncCalendar?color=blue&style=flat">
 </p>
 
 ## About this project
